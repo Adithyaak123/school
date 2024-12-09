@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-bbwm0tx#pg&+hox7b973tcv^^%l6^)ih^256y=mu*6#x(_h+c$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['school_app.onrender.com']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'school_app',
-    'school_app.onrender.com',
 ]
 
 MIDDLEWARE = [
@@ -119,9 +118,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# STATIC_URL = 'static/'
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For local development
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',  # Custom static files for development
+    ]
