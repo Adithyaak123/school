@@ -52,7 +52,7 @@ def teacherhome(request):
 def studenthome(request):
     return render(request,'stud_home.html')
 def Home(request):
-    return render(request,'Homepage.html')
+    return render(request,'index.html')
         
 def regteacher(request):
     if request.method=='POST':
@@ -80,7 +80,6 @@ def studregister(request):
         Student.objects.create(Name=name,Email=email,Gender=gender,Address=address,Phone_no=phon_no,user_type="student",value=0,Username=uname,Password=password,cls=class1)
         messages.info(request,f'registered')
         return redirect(studregister)
-        # return HttpResponse("okk")
         
     else:
         return render(request,'stud_register.html')
@@ -104,7 +103,11 @@ def editteacher(request,eid):
         username=request.POST['uname']
         password=request.POST['psw']
         phone=request.POST['ph']
-        subject=request.POST['subj']
+        try:
+             subject=request.POST['subj']
+        except  MultiValueDictKeyError:
+            subject='History'
+
         x=Teacher.objects.filter(id=eid).update(Name=name,Email=email,Username=username,Password=password,Phone_no=phone,Subject=subject)
         return redirect(viewteacher)
     else:
@@ -122,7 +125,10 @@ def editstudents(request,eid):
         email=request.POST['em']
         username=request.POST['uname']
         password=request.POST['psw']
-        class1=request.POST['cls']
+        try:
+             class1 = request.POST['cls'] 
+        except MultiValueDictKeyError:
+            class1=8
         try:
              gender=request.POST['gend']
         except MultiValueDictKeyError:
@@ -168,11 +174,16 @@ def editstudprofile1(request):
         email=request.POST['em']
         username=request.POST['uname']
         password=request.POST['psw']
-        class1=request.POST['cls']
+        try:
+            class1=request.POST['cls']
+        except MultiValueDictKeyError:
+            class1=8
+   
         try:
              gender=request.POST['gend']
         except MultiValueDictKeyError:
-            gender='female'
+            gender='Female'
+      
         phonenumber=request.POST['ph']
         address=request.POST['ad']
         a=request.session['stud_id']
@@ -196,7 +207,10 @@ def Editteacherprofile1(request):
         username=request.POST['uname']
         password=request.POST['psw']
         phone=request.POST['ph']
-        subject=request.POST['subj']
+        try:
+            subject=request.POST['subj']
+        except MultiValueDictKeyError:
+            subject='History'
         a=request.session['teacher_id']
         x=Teacher.objects.filter(id=a).update(Name=name,Email=email,Username=username,Password=password,Phone_no=phone,Subject=subject)
         return redirect(teacherprofile)

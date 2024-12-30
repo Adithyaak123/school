@@ -17,11 +17,12 @@
             background-color: lawngreen;
         }
 
-        input {
+        input,select {
 
             height: 30px;
             margin: 5px;
         }
+     
 
         body {
             color: white;
@@ -59,7 +60,7 @@
 </head>
 
 <body>
-    <h1 style="color: white;"><a href="adminhome" style="text-decoration: none;color: white;">Home</a>/Teacher Registration Form</h1>
+    <h1 style="color: white;"><a href="adminhome" style="text-decoration: none;color: black;">Home</a>/Teacher Registration Form</h1>
 
     <form action="regteacher" method="POST">
         {% csrf_token %}
@@ -98,10 +99,10 @@
             </tr>
             <tr>
                 <td class="column">
-                    <label for="">Phone Number:</label>
+                    <label for="" >Phone Number:</label>
                 </td>
                 <td>
-                    <input type="tel" name="mob"  required><br>
+                    <input type="tel" name="mob" maxlength="10" required><br>
                 </td>
             </tr>
             <tr>
@@ -109,7 +110,19 @@
                     <label for="">Subject:</label>
                 </td>
                 <td>
-                    <input type="text" name="sub"  required><br>
+                    <select name="sub" required id="in">
+                        <option disabled="disabled" selected="selected">Choose option</option>
+                        <option>Malayalam</option>
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>Mathematics</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Biology</option>
+                        <option>History</option>
+                        <option>Geography</option>
+                        <option>Information Technology</option>
+                    </select>
                 </td>
             </tr>
             <tr>

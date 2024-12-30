@@ -46,7 +46,8 @@
 </head>
 
 <body>
-    <h1>Edit Your Details</h1>
+    <h1 style="color: rgb(83, 45, 220);"><a href="studhome" style="text-decoration: none;color: black;">Home</a>/Edit
+        Your Details</h1>
     <form action="editstudprofile1" method="POST">
         {% csrf_token %}
         {% for i in a1 %}
@@ -89,7 +90,20 @@
                     <label for="">Class:</label>
                 </td>
                 <td>
-                    <input type="text" name="cls" value="{{i.cls}}" id="in" required><br>
+                    <select name="cls" required id="in">
+                        <option disabled="disabled" selected="selected">{{i.cls}}</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+
                 </td>
             </tr>
             <tr>
@@ -97,20 +111,25 @@
                     <label for="">Gender:</label>
                 </td>
                 <td>
-                    <input type="radio" name="gend" value="Male" {% if i.Gender == 'Male' %} checked {% endif %} required>Male
+                    <input type="radio" name="gend" value="Male" {% if i.Gender == 'Male' %} checked {% endif %}
+                        required>Male
                 </td>
-                <div style="position: relative;left: 150px;">
-                    <td>
-                        <input type="radio" name="gend" value="Female" {% if i.Gender == 'Female' %} checked {% endif %} required>Female
-                    </td>
-                </div>
+            </tr>
+            <tr>
+                <td></td>
+                <!-- <div style="position: relative;left: 150px;"> -->
+                <td>
+                    <input type="radio" name="gend" value="Female" {% if i.Gender == 'Female' %} checked {% endif %}
+                        required>Female
+                </td>
+                <!-- </div> -->
             </tr>
             <tr>
                 <td class="column">
                     <label for="">Phone Number:</label><br>
                 </td>
                 <td>
-                    <input type="tel" name="ph" value="{{i.Phone_no}}" id="in" required><br>
+                    <input type="tel" name="ph" value="{{i.Phone_no}}" id="in" required maxlength="10"><br>
                 </td>
             </tr>
             <tr>
@@ -118,7 +137,8 @@
                     <label for="">Address:</label>
                 </td>
                 <td>
-                    <textarea id="in" cols="20" rows="10" name="ad" style="resize: none;" required>{{i.Address}}</textarea><br>
+                    <textarea id="in" cols="20" rows="10" name="ad" style="resize: none;"
+                        required>{{i.Address}}</textarea><br>
                 </td>
             </tr>
             <tr>
